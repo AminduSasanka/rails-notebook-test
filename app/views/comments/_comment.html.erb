@@ -1,0 +1,38 @@
+<div class="jumbotron bg-light p-3 my-3">
+  <p class="mb-0 fs-6 text-muted"><%= comment.user.email %> said</p>
+
+  <% if (comment.updated_at - comment.created_at) > 1 %>
+    <p class="mb-2">
+      <small class="mb-3">edited <%= time_ago_in_words(comment.created_at) %> ago</small>  
+    </p>
+  <% else %>
+    <p class="mb-2">
+      <small class="mb-3">posted <%= time_ago_in_words(comment.created_at) %> ago</small>
+    </p>
+  <% end %>
+
+  <div id="comment-content-<%= comment.id %>" class="px-2">
+    <p><%= comment.content %></p>
+  </div>
+  
+  <% if current_user == comment.user %>
+    <div class="d-flex">
+      <%= button_to 'Delete your feedback', subject_note_comment_path(comment.note.subject, comment.note, comment), method: :delete, class:"btn btn-outline-danger btn-sm me-2" %>
+
+      <%= link_to 'Edit your feedback', nil, 
+        remote:true, 
+        class:"btn btn-outline-primary btn-sm ms-2", 
+        data: {
+          controller: 'comments',
+          action: "comments#toggleForm",
+          comments_form_param: "edit-form-#{comment.id}",
+          comments_content_param: "comment-content-#{comment.id}"
+        }
+      %>
+    </div>
+  <% end %>
+
+  <div id="edit-form-<%= comment.id %>" class="d-none mt-3">
+    <%= render 'comments/update_form', comment:comment %>
+  </div>
+</div>

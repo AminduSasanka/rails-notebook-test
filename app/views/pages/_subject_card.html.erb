@@ -1,0 +1,14 @@
+<div class="card bg-light shadow-sm my-3">
+  <img src="https://picsum.photos/id/237/768/1080" class="card-img-top img-fluid" alt="course image">
+
+  <div class="card-body">
+    <h5 class="card-title"><%= subject.name %></h5>
+    <p class="card-text"><%= subject.intro.truncate(100) %></p>
+    
+    <%= link_to subject_path(subject) do%>
+      <button class="btn btn-primary">Find more about  
+        <%= subject.name %>
+      </button>
+    <% end %>
+  </div>
+</div>

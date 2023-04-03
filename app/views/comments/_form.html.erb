@@ -1,0 +1,8 @@
+<%= form_with model:[note.subject, note, note.comments.build] do |f| %>
+  <div class='form-control'>
+    <%= f.rich_text_area :content %>
+    <div class="d-flex flex-row-reverse">
+      <%= f.submit 'Make a feedback', class: 'btn btn-sm btn-secondary mt-3' %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,18 @@
+<div class="jumbotron bg-light p-4">
+  <div class="container">
+    <h1 class="display-5"><%= @lecture.topic.capitalize %></h1>
+    <h5>Conducted by : <%= @lecture.instructor %></h5>
+    <p class="mb-0">Date and time: <%= @lecture.time %></p>
+    
+    <div class="d-flex flex-row justify-content-between align-items-center mt-5 my-2">
+      <h6 class=" me-5 mb-0">Available seats: 
+        <%= @lecture.max_appoinments - (@lecture.appoinments.length) %></h6>
+    </div>
+
+    <div class="d-flex gap-3 justify-content-start">
+      <%= link_to 'Reserve your seat',  new_subject_lecture_appoinment_path(@lecture.subject, @lecture), class:'btn btn-primary rounded mt-4' %>
+      <%= button_to 'Remove your reservation',  subject_lecture_appoinment_path(@lecture.subject, @lecture), method: :delete, class:'btn btn-outline-danger rounded mt-4' %>
+    </div>
+
+  </div>
+</div>

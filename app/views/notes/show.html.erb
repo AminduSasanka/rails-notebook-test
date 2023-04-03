@@ -1,0 +1,28 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4"><%= @note.title %></h1>
+    <h6>Created on : <%= @note.created_at %></h6>
+
+    <p class="lead"><%= @note.body %></p>
+    <%= link_to subject_path(@note.subject) do%>
+      <button class='btn btn-primary rounded mt-4'>Back to <%= @note.subject.name %></button>
+    <% end %>
+  </div>
+</div>
+
+<div class="jumbotron p-3 mt-5">
+  <h2 class="fw-light">Student feedbacks</h2>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+
+  <div class="my-3 bg-light p-3">
+    <%= render 'comments/form', note:@note %>
+  </div>
+  
+  <% if @comments.length >= 1 %>
+    <% @comments.each do |comment| %>
+      <%= render 'comments/comment', {comment:comment} %>
+    <% end %>
+  <% end %>
+  
+</div>

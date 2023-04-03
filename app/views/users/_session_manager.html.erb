@@ -1,0 +1,24 @@
+<% if current_user %>
+
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <%= current_user.email %>
+    </a>
+    <ul class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+      <li class="dropdown-item">
+        <%= link_to 'New post', root_path, class: 'nav-link text-dark' %>
+      </li>
+      <li class="dropdown-item">
+        <%= link_to 'Edit acount', edit_user_registration_path, class: 'nav-link text-dark' %>
+      </li>
+      <li><hr class="dropdown-divider"></li>
+      <li class="dropdown-item">
+        <%= button_to 'Log out', destroy_user_session_path, method: :delete, class: 'btn btn-sm btn-outline-danger mx-auto' %>
+      </li>
+    </ul>
+  </li>
+
+<% else %>
+    <%= link_to 'Create account', new_user_registration_path, class: 'btn btn-sm btn-secondary mb-1 mx-1' %>
+    <%= link_to 'Sign up', new_user_session_path, class: 'btn btn-sm btn-primary mb-1 mx-1' %>
+<% end %>

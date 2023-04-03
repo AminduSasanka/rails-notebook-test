@@ -1,0 +1,47 @@
+<div class="jumbotron bg-light p-3">
+  <h1 class="display-4">Hello, welcome to <%= @subject.name %>!</h1>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  
+  <p class="lead">
+    <%= link_to home_path do%>
+      <button class="btn btn-primary btn-lg">Back to courses</button>
+    <% end %>
+  </p>
+</div>
+
+
+<div class="jumbotron mt-5">
+  <h1 class="display-6">Available notes</h1>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  
+  <% @subject.notes.each do |note| %>
+    <div class="d-flex flex-row justify-content-between align-items-center bg-light my-2 p-2">
+      <h6 class=" me-auto mb-0"><%= note.title %></h6>
+      <p class=' mb-0 me-5'><%= note.body.truncate(80) %></p>
+      <%= link_to subject_note_path(@subject, note) do%>
+        <button class='btn btn-primary rounded'>read more</button>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="jumbotron mt-5">
+  <h1 class="display-6">Available lecture sessions</h1>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  
+  <% @subject.lectures.each do |lecture| %>
+    <div class="d-flex flex-row justify-content-between align-items-center bg-light my-2 p-2">
+      <h6 class=" mb-0"><%= lecture.subject.name %></h6>
+      <h6 class=" mb-0">Topic: <%= lecture.topic %></h6>
+      <p class=' mb-0 '>Instructor: <%= lecture.instructor %></p>
+      <p class=' mb-0 '>Time: <%= lecture.time %></p>
+      <%= link_to subject_lecture_path(@subject, lecture) do%>
+        <button class='btn btn-outline-success rounded'>Book your Seat</button>
+      <% end %>
+    </div>
+  <% end %>
+</div>
